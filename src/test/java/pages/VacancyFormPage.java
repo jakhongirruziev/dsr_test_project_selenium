@@ -7,13 +7,15 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import static enums.FilePathsEnum.CV_DOCX_FILE;
+import static enums.FilePathsEnum.CV_PDF_FILE;
+
 public class VacancyFormPage {
     WebDriver driver;
-    private static final String PAGE_URL = "https://vladimirwork.github.io/web-ui-playground/";
+    public static final String PAGE_URL = "https://vladimirwork.github.io/web-ui-playground/";
 
     public VacancyFormPage(WebDriver driver) {
         this.driver = driver;
-        driver.get(PAGE_URL);
         PageFactory.initElements(driver, this);
     }
 
@@ -71,6 +73,14 @@ public class VacancyFormPage {
         genderFemaleChk.click();
     }
 
+    public void selectGender(String gender) {
+        if (gender.equals("M")) {
+            clickGenderMaleChk();
+        } else if (gender.equals("F")) {
+            clickGenderFemaleChk();
+        }
+    }
+
     public void setVacancyOpt(String vacancyName) {
         Select select = new Select(vacancyDrd);
         select.selectByVisibleText(vacancyName);
@@ -80,8 +90,20 @@ public class VacancyFormPage {
         cvUploadInput.sendKeys(cvFilePath);
     }
 
+    public void uploadCv(String cv) {
+        if (cv.equals("PDF"))
+            setCvFile(CV_PDF_FILE.getFilePath());
+        else if (cv.equals("DOCX"))
+            setCvFile(CV_DOCX_FILE.getFilePath());
+    }
+
     public void clickAgreementChk() {
         agreementChk.click();
+    }
+
+    public void personalDataAgreement(String agreement) {
+        if (agreement.equals("Checked"))
+            clickAgreementChk();
     }
 
     public void clickSubmitBtn() {

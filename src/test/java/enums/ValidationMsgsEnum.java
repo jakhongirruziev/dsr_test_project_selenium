@@ -1,6 +1,6 @@
 package enums;
 
-public enum ValidationMsgs {
+public enum ValidationMsgsEnum {
 
     FIRST_NAME_VALIDATION_MSG("Valid first name is required."),
     LAST_NAME_VALIDATION_MSG("Valid last name is required."),
@@ -12,7 +12,7 @@ public enum ValidationMsgs {
 
     private final String msg;
 
-    ValidationMsgs(String msg) {
+    ValidationMsgsEnum(String msg) {
         this.msg = msg;
     }
 
